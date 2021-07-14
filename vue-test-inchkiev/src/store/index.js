@@ -54,16 +54,26 @@ export default createStore({
     ],
     isCurrentPatient: null,
     counterPatient: null,
+    queue: 1,
     medicamentOne: null,
     medicamentTwo: null,
     medicamentThree: null,
   },
   mutations: {
     currentPatient(state) {
-      state.counterPatient = state.counterPatient + 1
+      if (state.queue < state.patients.length) {
+        state.queue++
+      } else if (state.queue > state.patients.length) {
+        state.queue = state.patients.length
+      }
+
+      if (state.counterPatient <= state.patients.length) {
+        state.counterPatient++
+      } else if (state.counterPatient > state.patients.length) {
+        state.counterPatient = state.patients.length
+      }
+      
       state.isCurrentPatient = state.patients[state.counterPatient]
-      console.log(state.isCurrentPatient)
-      console.log(state.counterPatient)
     },
     changeMedicamentOne(state) {
       state.medicamentOne = state.medicamentOne + 1
@@ -79,11 +89,11 @@ export default createStore({
     nextPatient({ commit }, medicamentNumber) {
       commit('currentPatient')
       if (Number(medicamentNumber) === 1) {
-        commit('changeMedicamentOne')
+        return commit('changeMedicamentOne')
       } else if (Number(medicamentNumber) === 2) {
-        commit('changeMedicamentTwo')
+        return commit('changeMedicamentTwo')
       } else {
-        commit('changeMedicamentThree')
+        return commit('changeMedicamentThree')
       }
     },
     test() {},

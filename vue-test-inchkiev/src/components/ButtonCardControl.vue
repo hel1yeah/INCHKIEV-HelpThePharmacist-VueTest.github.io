@@ -1,5 +1,6 @@
 <template>
   <button
+    :disabled="counterPatient >= patients.length"
     class="card__control-button"
     :class="btnClass"
     @click="$emit('action')"
@@ -9,11 +10,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'ButtonCardControl',
   emits: {
-    type: Function,
-    require: true,
+    action: {
+      type: Function,
+      require: true,
+    },
   },
   props: {
     btnClass: {
@@ -23,6 +27,13 @@ export default {
         return ['', 'purple', 'blue', 'yellow'].includes(value)
       },
     },
+  },
+  computed: {
+    ...mapState({
+      counterPatient: 'counterPatient',
+      patients: 'patients',
+      queue: 'queue',
+    }),
   },
 }
 </script>
@@ -54,6 +65,10 @@ export default {
   &:visited {
     transform: translateY(-20px);
     box-shadow: 0px 0px 40px rgba(127, 127, 127, 0.4);
+  }
+  &:disabled {
+    transform: translateY(0px);
+    opacity: 0.6;
   }
 }
 </style>

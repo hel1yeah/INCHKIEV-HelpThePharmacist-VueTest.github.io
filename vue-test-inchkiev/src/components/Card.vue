@@ -1,10 +1,12 @@
 <template>
-  <div class="card" v-if="counterPatient !== patients.length">
+  <div class="card" v-if="counterPatient < patients.length ">
     <div class="card__img--wrapper">
       <img
         class="card__img"
         :src="
-          curentPatient === null ? getFirstPatient.photo : curentPatient.photo
+          isCurrentPatient === null
+            ? getFirstPatient.photo
+            : isCurrentPatient.photo
         "
         alt="patient"
       />
@@ -13,22 +15,26 @@
     <div class="card__descr">
       <h3 class="card__descr--title">
         {{
-          curentPatient === null ? getFirstPatient.name : curentPatient.name
+          isCurrentPatient === null
+            ? getFirstPatient.name
+            : isCurrentPatient.name
         }},
-        {{ curentPatient === null ? getFirstPatient.ege : curentPatient.ege }}
+        {{
+          isCurrentPatient === null ? getFirstPatient.ege : isCurrentPatient.ege
+        }}
         років
       </h3>
       <p class="card__descr--par">
         {{
-          curentPatient === null
+          isCurrentPatient === null
             ? getFirstPatient.problem
-            : curentPatient.problem
+            : isCurrentPatient.problem
         }}
       </p>
     </div>
   </div>
   <div class="blank__card" v-else>
-    Поздоровляємо!!! Пацієнти потребуючі вашої допомоги, на даный момент, не
+    Поздоровляємо!!! Пацієнтів що потребуюсть вашої допомоги, на даный момент, не
     залишилося, Можете відпочити, Ви молодець!
   </div>
 </template>
@@ -41,9 +47,9 @@ export default {
     patient: {
       type: Object,
       require: true,
-      validator(value) {
-        return
-      },
+      // validator(value) {
+      //   return
+      // },
     },
   },
   data() {
@@ -51,8 +57,9 @@ export default {
   },
   computed: {
     ...mapState({
-      curentPatient: 'isCurrentPatient',
+      isCurrentPatient: 'isCurrentPatient',
       counterPatient: 'counterPatient',
+      queue: 'queue',
       patients: 'patients',
       medicamentOne: 'medicamentOne',
       medicamentTwo: 'medicamentTwo',
@@ -60,9 +67,6 @@ export default {
     }),
     getFirstPatient() {
       return this.$store.state.patients[0]
-    },
-    getCounterPatient() {
-      return this.$store.state.patients.length - 1
     },
   },
 }
@@ -141,5 +145,4 @@ export default {
   line-height: 30px;
   margin: 10px 0 0 0;
 }
-
 </style>

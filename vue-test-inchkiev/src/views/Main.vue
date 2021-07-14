@@ -50,21 +50,17 @@
           <div class="main__queue">
             <span class="main__queue--descr">Осталось в очереди:</span>
             <div class="main__queue--num">
-              <span>{{
-                counterPatient === null
-                  ? getCounterPatient
-                  : patients.length - counterPatient
-              }}</span
+              <span
+                >
+                {{patients.length - queue}}
+                </span
               >/{{ patients.length }}
             </div>
           </div>
         </div>
 
         <div class="main__work-space">
-          <!-- <div class="main__work--inner"> -->
-
           <card></card>
-
           <div class="card__control-buttons">
             <button-card-control @action="nextPatient(1)" btnClass="purple"
               >Препарат 1</button-card-control
@@ -102,9 +98,10 @@ export default {
   },
   computed: {
     ...mapState({
-      curentPatient: 'isCurrentPatient',
+      isCurrentPatient: 'isCurrentPatient',
       counterPatient: 'counterPatient',
       patients: 'patients',
+      queue: 'queue',
       medicamentOne: 'medicamentOne',
       medicamentTwo: 'medicamentTwo',
       medicamentThree: 'medicamentThree',
