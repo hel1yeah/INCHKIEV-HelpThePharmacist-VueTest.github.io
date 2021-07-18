@@ -72,7 +72,7 @@ export default createStore({
       } else if (state.counterPatient > state.patients.length) {
         state.counterPatient = state.patients.length
       }
-      
+
       state.isCurrentPatient = state.patients[state.counterPatient]
     },
     changeMedicamentOne(state) {
@@ -98,6 +98,4 @@ export default createStore({
     },
     test() {},
   },
-  // modules: {},
-  // модулей у нас нету
 })

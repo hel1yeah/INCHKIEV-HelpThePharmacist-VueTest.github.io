@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import StartPage from '@/views/StartPage.vue'
 import Main from '@/views/Main.vue'
+import FinalEasy from '@/views/FinalEasy.vue'
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: '/main',
     name: 'main',
     component: Main,
+  },
+  {
+    path: '/final-easy',
+    name: 'final-easy',
+    component: FinalEasy,
   },
 ]
 

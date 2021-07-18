@@ -1,5 +1,5 @@
 <template>
-  <div class="start-page">
+  <section class="start-page">
     <div class="container">
       <div class="ellipse">
         <div class="ellipse__inner">
@@ -13,7 +13,7 @@
         </router-link>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
