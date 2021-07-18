@@ -36,6 +36,7 @@
           </p>
         </div>
       </div>
+      <button class="restart">Попробовать ещё раз</button>
     </div>
   </section>
 </template>
@@ -44,9 +45,7 @@
 export default {
   name: 'FinalEasy',
   data() {
-    return {
-      
-    }
+    return {}
   },
 }
 </script>
@@ -58,7 +57,6 @@ export default {
   height: 70px;
   border-radius: 50%;
   background-color: var(--maine-bg-color);
-  border: 1px solid red;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,7 +75,6 @@ export default {
   overflow: hidden;
   position: relative;
   width: 100%;
-  height: 100vh;
   color: var(--text-color-dark);
 }
 .final-ease__image-bg {
@@ -161,6 +158,31 @@ export default {
   & p {
     font-size: 24px;
     line-height: 29px;
+  }
+}
+.restart {
+  background: var(--button-restart);
+  color: var(--text-color);
+  display: block;
+  width: 280px;
+  padding: 25px 0;
+  margin: 250px 0 30px 130px ;
+  text-align: center;
+  border-radius: 100px;
+  border: 1px solid transparent;
+  outline: 1px solid transparent;
+  cursor: pointer;
+  transition: 0.5s;
+  &:hover,
+  &:active,
+  &:focus,
+  &:visited {
+    transform: translateY(-20px);
+    box-shadow: 0px 0px 40px rgba(127, 127, 127, 0.4);
+  }
+  &:disabled {
+    transform: translateY(0px);
+    opacity: 0.6;
   }
 }
 </style>

@@ -5,13 +5,15 @@
         <div class="main__menu--wrapper">
           <div class="main__menu">
             <div class="main__control-buttons">
-              <button class="main__button">
-                <img
-                  class="button-home__img"
-                  src="@/assets/images/home.svg"
-                  alt="Home"
-                />
-              </button>
+              <router-link :to="{ name: 'final-easy' }">
+                <button class="main__button">
+                  <img
+                    class="button-home__img"
+                    src="@/assets/images/home.svg"
+                    alt="Home"
+                  /></button
+              ></router-link>
+
               <button class="main__button">
                 <img
                   class="button-refresh__img"
@@ -50,11 +52,7 @@
           <div class="main__queue">
             <span class="main__queue--descr">Осталось в очереди:</span>
             <div class="main__queue--num">
-              <span
-                >
-                {{patients.length - queue}}
-                </span
-              >/{{ patients.length }}
+              <span> {{ patients.length - queue }} </span>/{{ patients.length }}
             </div>
           </div>
         </div>

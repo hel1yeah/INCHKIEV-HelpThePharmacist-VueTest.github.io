@@ -62,6 +62,7 @@ export default {
   outline: 1px solid transparent;
   &:hover,
   &:active,
+  &:focus,
   &:visited {
     transform: translateY(-20px);
     box-shadow: 0px 0px 40px rgba(127, 127, 127, 0.4);
