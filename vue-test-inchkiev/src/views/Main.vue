@@ -14,7 +14,7 @@
                   /></button
               ></router-link>
 
-              <button class="main__button">
+              <button class="main__button" @click="restartState">
                 <img
                   class="button-refresh__img"
                   src="@/assets/images/refresh.svg"
@@ -93,6 +93,9 @@ export default {
     nextPatient(medicamentNumber) {
       this.$store.dispatch('nextPatient', medicamentNumber)
     },
+    restartState() {
+      this.$store.dispatch('restartState')
+    },
   },
   computed: {
     ...mapState({
@@ -104,18 +107,9 @@ export default {
       medicamentTwo: 'medicamentTwo',
       medicamentThree: 'medicamentThree',
     }),
-    getFirstPatient() {
-      return this.$store.state.patients[0]
-    },
-    getCounterPatient() {
-      return this.$store.state.patients.length - 1
-    },
+    ...mapGetters(['getFirstPatient', 'getCounterPatient']),
   },
-  maunted: {
-    test() {
-      this.$store.dispatch('tets')
-    },
-  },
+  maunted: {},
 }
 </script>
 
@@ -158,7 +152,6 @@ export default {
   background-color: var(--maine-bg-color);
   flex-grow: 1;
   flex-shrink: 3;
-  border-right: 5px solid black;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -260,5 +253,16 @@ export default {
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1367px) {
+  .main__param {
+    margin: 100px 0 0 0;
+  }
+  .card__control-button {
+    width: 245px;
+    padding: 20px 0;
+    margin: 10px;
+  }
 }
 </style>

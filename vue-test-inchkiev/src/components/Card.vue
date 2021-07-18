@@ -1,5 +1,5 @@
 <template>
-  <div class="card" v-if="counterPatient < patients.length ">
+  <div class="card" v-if="counterPatient < patients.length">
     <div class="card__img--wrapper">
       <img
         class="card__img"
@@ -34,8 +34,8 @@
     </div>
   </div>
   <div class="blank__card" v-else>
-    Поздоровляємо!!! Пацієнтів що потребуюсть вашої допомоги, на даный момент, не
-    залишилося, Можете відпочити, Ви молодець!
+    Поздоровляємо!!! Пацієнтів що потребуюсть вашої допомоги, на даный момент,
+    не залишилося, Можете відпочити, Ви молодець!
   </div>
 </template>
 
@@ -47,9 +47,6 @@ export default {
     patient: {
       type: Object,
       require: true,
-      // validator(value) {
-      //   return
-      // },
     },
   },
   data() {
@@ -61,13 +58,8 @@ export default {
       counterPatient: 'counterPatient',
       queue: 'queue',
       patients: 'patients',
-      medicamentOne: 'medicamentOne',
-      medicamentTwo: 'medicamentTwo',
-      medicamentThree: 'medicamentThree',
     }),
-    getFirstPatient() {
-      return this.$store.state.patients[0]
-    },
+    ...mapGetters(['getFirstPatient']),
   },
 }
 </script>
@@ -75,7 +67,6 @@ export default {
 <style lang="scss" scoped>
 .card {
   max-width: 540px;
-  min-height: 590px;
   border-radius: 40px;
   box-shadow: 0px 0px 40px rgba(127, 127, 127, 0.4);
   overflow: hidden;
@@ -144,5 +135,25 @@ export default {
   font-size: 32px;
   line-height: 30px;
   margin: 10px 0 0 0;
+}
+
+@media screen and (max-width: 1367px) {
+  .card {
+    max-width: 370px;
+  }
+  .card__descr {
+    text-align: left;
+    max-width: 420px;
+    margin: 15px 25px 25px;
+  }
+  .card__descr--title {
+    font-size: 30px;
+    line-height: 30px;
+  }
+  .card__descr--par {
+    font-size: 25px;
+    line-height: 25px;
+  }
+  
 }
 </style>

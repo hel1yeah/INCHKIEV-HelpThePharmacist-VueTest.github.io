@@ -12,15 +12,15 @@
       <div class="final-ease__inner">
         <div class="final-ease__interest">
           <div class="final-ease__interest--medicament">
-            <span class="interest">100%</span>
+            <span class="interest">{{ getPercentage(medicamentOne) }}%</span>
             <span class="medicament">Препарат 1</span>
           </div>
           <div class="final-ease__interest--medicament">
-            <span class="interest">100%</span>
+            <span class="interest">{{ getPercentage(medicamentTwo) }}%</span>
             <span class="medicament">Препарат 1</span>
           </div>
           <div class="final-ease__interest--medicament">
-            <span class="interest">100%</span>
+            <span class="interest">{{ getPercentage(medicamentThree) }}%</span>
             <span class="medicament">Препарат 1</span>
           </div>
         </div>
@@ -36,16 +36,34 @@
           </p>
         </div>
       </div>
-      <button class="restart">Попробовать ещё раз</button>
+      <button class="restart" @click="restart">Попробовать ещё раз</button>
     </div>
   </section>
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex'
 export default {
   name: 'FinalEasy',
   data() {
     return {}
+  },
+  methods: {
+    getPercentage(t) {
+      return Math.round((t / this.patientsLength) * 100)
+    },
+    restart() {
+      this.$store.dispatch('restartState')
+      this.$router.push({ name: 'main' })
+    },
+  },
+  computed: {
+    ...mapState({
+      medicamentOne: 'medicamentOne',
+      medicamentTwo: 'medicamentTwo',
+      medicamentThree: 'medicamentThree',
+    }),
+    ...mapGetters(['patientsLength']),
   },
 }
 </script>
@@ -166,10 +184,10 @@ export default {
   display: block;
   width: 280px;
   padding: 25px 0;
-  margin: 250px 0 30px 130px ;
+  margin: 250px 0 30px 130px;
   text-align: center;
   border-radius: 100px;
-  border: 1px solid transparent;
+  border: 0px solid transparent;
   outline: 1px solid transparent;
   cursor: pointer;
   transition: 0.5s;
@@ -183,6 +201,22 @@ export default {
   &:disabled {
     transform: translateY(0px);
     opacity: 0.6;
+  }
+}
+@media screen and (max-width: 1025px) {
+  .final-ease__image-bg {
+    top: -135px;
+    right: -100px;
+    width: 500px;
+    height: 500px;
+    background-size: contain;
+  }
+  .final-ease__inner {
+    margin: 25% auto 0px;
+    padding: 0 30px 0;
+  }
+  .restart {
+    margin: 10% 0 0 9%;
   }
 }
 </style>

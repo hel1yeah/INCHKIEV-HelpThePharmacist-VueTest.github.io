@@ -45,7 +45,6 @@ export default {
     width: 100%;
     height: 100%;
     background: var(--gradient-color);
-
     opacity: 0.35;
     z-index: -1;
   }
@@ -88,8 +87,10 @@ export default {
     }
   }
 }
-.ellipse__btn {
+.header__logo {
   margin: 120px 0 0 0;
+}
+.ellipse__btn {
   width: 380px;
   height: 90px;
   border-radius: var(--border-radius-big);
@@ -99,5 +100,50 @@ export default {
   color: #8e9ad5;
   font-weight: 800;
   font-size: 36px;
+}
+
+@media screen and (max-width: 1025px) {
+  .ellipse {
+    width: 600px;
+    height: 600px;
+  }
+  .ellipse__inner--descr {
+    font-size: 24px;
+    line-height: 20px;
+    font-weight: 200;
+    letter-spacing: 1px;
+  }
+  .ellipse__inner--title {
+    margin: 30px 0 0;
+    letter-spacing: 3px;
+    line-height: 60px;
+    & h1 {
+      font-size: 40px;
+
+      & span {
+        font-size: 45px;
+      }
+    }
+  }
+  .header__logo {
+    margin: 60px 0 0 0;
+  }
+  .ellipse__btn {
+    width: 290px;
+    height: 60px;
+    font-size: 26px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .ellipse {
+    width: 450px;
+    height: 450px;
+    margin: -30px auto 0;
+    text-align: center;
+  }
+  .ellipse__inner {
+  max-width: 100%;
+}
 }
 </style>

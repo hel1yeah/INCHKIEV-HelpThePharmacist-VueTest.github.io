@@ -84,6 +84,14 @@ export default createStore({
     changeMedicamentThree(state) {
       state.medicamentThree = state.medicamentThree + 1
     },
+    restartState(state) {
+      state.isCurrentPatient = null
+      state.counterPatient = null
+      state.queue = 1
+      state.medicamentOne = null
+      state.medicamentTwo = null
+      state.medicamentThree = null
+    },
   },
   actions: {
     nextPatient({ commit }, medicamentNumber) {
@@ -96,6 +104,19 @@ export default createStore({
         return commit('changeMedicamentThree')
       }
     },
-    test() {},
+    restartState({ commit }) {
+      commit('restartState')
+    },
+  },
+  getters: {
+    patientsLength: (state) => {
+      return state.patients.length
+    },
+    getFirstPatient(state) {
+      return state.patients[0]
+    },
+    getCounterPatient(state) {
+      return state.patients.length - 1
+    },
   },
 })
