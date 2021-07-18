@@ -135,7 +135,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 769px) {
   .ellipse {
     width: 450px;
     height: 450px;

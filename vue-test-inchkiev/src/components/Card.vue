@@ -154,6 +154,13 @@ export default {
     font-size: 25px;
     line-height: 25px;
   }
-  
+  .blank__card {
+    max-width: 370px;
+    max-height: 400px;
+    border-radius: 40px;
+    padding: 30px 40px;
+    letter-spacing: 1px;
+    line-height: 30px;
+  }
 }
 </style>
