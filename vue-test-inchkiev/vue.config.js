@@ -6,7 +6,7 @@ module.exports = {
   assetsDir: 'app',
   productionSourceMap: false,
   filenameHashing: true,
-
+  // firebase deploy --only hosting:inchkiev
   // chainWebpack: config => {
   //   const types = ["vue-modules", "vue", "normal-modules", "normal"];
   //   types.forEach(type =>
