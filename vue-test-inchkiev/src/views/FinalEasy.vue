@@ -119,7 +119,7 @@ export default {
 }
 .final-ease {
   overflow: hidden;
-  position: relative;
+  // position: relative;
   width: 100%;
   color: var(--text-color-dark);
 }

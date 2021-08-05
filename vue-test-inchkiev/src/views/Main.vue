@@ -58,7 +58,8 @@
         </div>
 
         <div class="main__work-space">
-          <card class="hammer-card"></card>
+          <card></card>
+
           <div class="card__control-buttons">
             <button-card-control @action="nextPatient(1)" btnClass="purple"
               >Препарат 1
@@ -81,10 +82,6 @@ import { mapState, mapGetters } from 'vuex'
 import Card from '@/components/Card.vue'
 import ButtonCardControl from '@/components/ButtonCardControl.vue'
 
-import * as Hammer from 'hammerjs'
-
-window.Hammer = Hammer.default
-
 export default {
   components: {
     ButtonCardControl,
@@ -101,16 +98,6 @@ export default {
     restartState() {
       this.$store.dispatch('restartState')
     },
-    startHammer() {
-      const card = document.getElementsByClassName('hammer-card')[0]
-      let mc = new Hammer.Manager(card)
-      let Pan = new Hammer.Pan()
-      mc.add(Pan)
-      mc.get('pan').set({ direction: Hammer.DIRECTION_ALL })
-      mc.on('panleft panright panup pandown tap press', function (ev) {
-        console.log('ololo')
-      })
-    },
   },
   computed: {
     ...mapState({
@@ -124,9 +111,7 @@ export default {
     }),
     ...mapGetters(['getFirstPatient', 'getCounterPatient']),
   },
-  mounted() {
-    this.startHammer()
-  },
+  mounted() {},
 }
 </script>
 
@@ -163,7 +148,11 @@ export default {
   }
 }
 .main__menu {
-  padding: 70px 30px 0;
+  padding: 70px 30px 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .main__work-space {
   background-color: var(--maine-bg-color);
@@ -208,7 +197,6 @@ export default {
 }
 
 .main__param {
-  margin: 290px 0 0 0;
 }
 .main__param--text {
   font-size: 36px;
@@ -273,9 +261,6 @@ export default {
 }
 
 @media screen and (max-width: 1367px) {
-  .main__param {
-    margin: 100px 0 0 0;
-  }
   .card__control-button {
     width: 245px;
     padding: 20px 0;
