@@ -40,6 +40,7 @@
 </template>
 
 <script>
+
 import { mapState, mapGetters } from 'vuex'
 export default {
   name: 'card',
@@ -52,6 +53,8 @@ export default {
   data() {
     return {}
   },
+  methods: {
+  },
   computed: {
     ...mapState({
       isCurrentPatient: 'isCurrentPatient',
@@ -61,6 +64,9 @@ export default {
     }),
     ...mapGetters(['getFirstPatient']),
   },
+  mounted() {
+
+  },
 }
 </script>
 
@@ -68,7 +74,7 @@ export default {
 .card {
   max-width: 540px;
   border-radius: 40px;
-  box-shadow: 0px 0px 40px rgba(127, 127, 127, 0.4);
+  box-shadow: 0 0 40px rgba(127, 127, 127, 0.4);
   overflow: hidden;
 }
 .blank__card {

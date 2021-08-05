@@ -30,7 +30,7 @@ export default {
 .start-page {
   width: 100vw;
   height: 100vh;
-  background-image: url('~@/assets/images/bg.jpg');
+  background-image: url('./../assets/images/bg.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -72,7 +72,6 @@ export default {
   letter-spacing: 2px;
 }
 .ellipse__inner--title {
-  font-weight: normal;
   margin: 30px 0 0;
   letter-spacing: 5px;
   font-size: 60px;
@@ -94,7 +93,7 @@ export default {
   width: 380px;
   height: 90px;
   border-radius: var(--border-radius-big);
-  border: 0px solid transparent;
+  border: 0 solid transparent;
   cursor: pointer;
 
   color: #8e9ad5;
@@ -143,7 +142,7 @@ export default {
     text-align: center;
   }
   .ellipse__inner {
-  max-width: 100%;
-}
+    max-width: 100%;
+  }
 }
 </style>

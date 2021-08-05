@@ -42,7 +42,7 @@
                 <div class="main__param--item">
                   <img
                     class="main__param--img"
-                    src="./../assets/images/heart_icon.svg"
+                    src="@/assets/images/heart_icon.svg"
                     alt="happy_icon"
                   /><span>{{ medicamentThree || 0 }}</span>
                 </div>
@@ -58,11 +58,11 @@
         </div>
 
         <div class="main__work-space">
-          <card></card>
+          <card class="hammer-card"></card>
           <div class="card__control-buttons">
             <button-card-control @action="nextPatient(1)" btnClass="purple"
-              >Препарат 1</button-card-control
-            >
+              >Препарат 1
+            </button-card-control>
             <button-card-control @action="nextPatient(2)" btnClass="blue"
               >Препарат 2
             </button-card-control>
@@ -80,6 +80,11 @@
 import { mapState, mapGetters } from 'vuex'
 import Card from '@/components/Card.vue'
 import ButtonCardControl from '@/components/ButtonCardControl.vue'
+
+import * as Hammer from 'hammerjs'
+
+window.Hammer = Hammer.default
+
 export default {
   components: {
     ButtonCardControl,
@@ -96,6 +101,16 @@ export default {
     restartState() {
       this.$store.dispatch('restartState')
     },
+    startHammer() {
+      const card = document.getElementsByClassName('hammer-card')[0]
+      let mc = new Hammer.Manager(card)
+      let Pan = new Hammer.Pan()
+      mc.add(Pan)
+      mc.get('pan').set({ direction: Hammer.DIRECTION_ALL })
+      mc.on('panleft panright panup pandown tap press', function (ev) {
+        console.log('ololo')
+      })
+    },
   },
   computed: {
     ...mapState({
@@ -109,7 +124,9 @@ export default {
     }),
     ...mapGetters(['getFirstPatient', 'getCounterPatient']),
   },
-  maunted: {},
+  mounted() {
+    this.startHammer()
+  },
 }
 </script>
 
@@ -169,7 +186,7 @@ export default {
   height: 70px;
   border-radius: 50%;
   background-color: var(--maine-bg-color);
-  border: 0px solid transparent;
+  border: 0 solid transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -181,7 +198,7 @@ export default {
   &:focus,
   &:visited {
     transform: translateY(-20px);
-    box-shadow: 0px 0px 40px rgba(127, 127, 127, 0.4);
+    box-shadow: 0 0 40px rgba(127, 127, 127, 0.4);
   }
 }
 .button-home__img {
