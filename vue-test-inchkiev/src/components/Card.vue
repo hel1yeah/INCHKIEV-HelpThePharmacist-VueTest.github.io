@@ -1,6 +1,13 @@
 <template>
   <div class="card" v-if="counterPatient < patients.length">
-    <div class="card-label"></div>
+    <div
+      class="card-label"
+      :class="[
+        cardLabel === 1 ? 'left-card' : '',
+        cardLabel === 2 ? 'up-card' : '',
+        cardLabel === 3 ? 'right-card' : '',
+      ]"
+    ></div>
     <div class="card__img--wrapper">
       <img
         class="card__img"
@@ -41,63 +48,63 @@
 </template>
 
 <script>
-import * as Hammer from 'hammerjs'
+// import * as Hammer from 'hammerjs'
 
-window.Hammer = Hammer.default
+// window.Hammer = Hammer.default
 
 import { mapState, mapGetters } from 'vuex'
 export default {
   name: 'card',
-  props: {
-    patient: {
-      type: Object,
-      require: true,
-    },
-  },
+  emits: ['resetCardlable'],
+  props: ['cardLabel'],
   data() {
     return {}
   },
   methods: {
-    startHammer() {
-      const card = document.getElementsByClassName('card')[0]
-      const cardLabel = document.getElementsByClassName('card-label')[0]
-      let mc = new Hammer.Manager(card)
-      let Pan = new Hammer.Pan()
-      mc.add(Pan)
-      mc.get('pan').set({ direction: Hammer.DIRECTION_ALL })
-      mc.on(
-        'panleft swipeleft panright swiperight panup swipeup pandown swipedown press pressup',
-        function (ev) {
-          const X = ev.deltaX
-          const Y = ev.deltaY
-
-          card.style.transform = `
-            translate(${X}px, ${Y}px)
-            rotate(${ev.deltaX / 10}deg
-            `
-
-          console.log(Math.abs(Y))
-          console.log('x:', X, 'y:', Y)
-          if (X < -50 && X < Y) {
-            cardLabel.classList.remove('right-card')
-            cardLabel.classList.remove('up-card')
-            cardLabel.classList.add('left-card')
-          } else if (Y < -50 && Y < X) {
-            cardLabel.classList.remove('right-card')
-            cardLabel.classList.remove('left-card')
-            cardLabel.classList.add('up-card')
-          } else if (50 < X && X > Math.abs(Y)) {
-            cardLabel.classList.remove('left-card')
-            cardLabel.classList.remove('up-card')
-            cardLabel.classList.add('right-card')
-          } else if (Y > 20) {
-            cardLabel.classList.remove('left-card')
-            cardLabel.classList.remove('up-card')
-            cardLabel.classList.remove('right-card')
-          }
-        },
-      )
+    showLableCard() {
+      console.log(this.cardLabel)
+      setTimeout(() => {
+        this.$emit('resetCardlable')
+      }, 1000)
     },
+    // startHammer() {
+    //   const card = document.getElementsByClassName('card')[0]
+    //   const cardLabel = document.getElementsByClassName('card-label')[0]
+    //   let mc = new Hammer.Manager(card)
+    //   let Pan = new Hammer.Pan()
+    //   mc.add(Pan)
+    //   mc.get('pan').set({ direction: Hammer.DIRECTION_ALL })
+    //   mc.on(
+    //     'panleft swipeleft panright swiperight panup swipeup pandown swipedown press pressup',
+    //     function (ev) {
+    //       const X = ev.deltaX
+    //       const Y = ev.deltaY
+    //       card.style.transform = `
+    //         translate(${X}px, ${Y}px)
+    //         rotate(${ev.deltaX / 10}deg
+    //         `
+    //       console.log(Math.abs(Y))
+    //       console.log('x:', X, 'y:', Y)
+    //       if (X < -50 && X < Y) {
+    //         cardLabel.classList.remove('right-card')
+    //         cardLabel.classList.remove('up-card')
+    //         cardLabel.classList.add('left-card')
+    //       } else if (Y < -50 && Y < X) {
+    //         cardLabel.classList.remove('right-card')
+    //         cardLabel.classList.remove('left-card')
+    //         cardLabel.classList.add('up-card')
+    //       } else if (50 < X && X > Math.abs(Y)) {
+    //         cardLabel.classList.remove('left-card')
+    //         cardLabel.classList.remove('up-card')
+    //         cardLabel.classList.add('right-card')
+    //       } else if (Y > 20) {
+    //         cardLabel.classList.remove('left-card')
+    //         cardLabel.classList.remove('up-card')
+    //         cardLabel.classList.remove('right-card')
+    //       }
+    //     },
+    //   )
+    // },
   },
   computed: {
     ...mapState({
@@ -109,7 +116,7 @@ export default {
     ...mapGetters(['getFirstPatient']),
   },
   mounted() {
-    this.startHammer()
+    this.showLableCard()
   },
 }
 </script>

@@ -58,7 +58,7 @@
         </div>
 
         <div class="main__work-space">
-          <card></card>
+          <card :cardLabel="cardLabel" @resetCardlable='resetCardlable' ref='card'></card>
 
           <div class="card__control-buttons">
             <button-card-control @action="nextPatient(1)" btnClass="purple"
@@ -89,11 +89,22 @@ export default {
   },
   name: 'Main',
   data() {
-    return {}
+    return {
+      cardLabel: null,
+    }
   },
   methods: {
+    resetCardlable(){
+
+      this.cardLabel = null
+    },
     nextPatient(medicamentNumber) {
-      this.$store.dispatch('nextPatient', medicamentNumber)
+      this.cardLabel = medicamentNumber
+
+
+      setTimeout(() => {
+        this.$store.dispatch('nextPatient', medicamentNumber)
+      }, 1000)
     },
     restartState() {
       this.$store.dispatch('restartState')
