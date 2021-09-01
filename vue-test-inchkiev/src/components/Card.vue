@@ -1,5 +1,6 @@
 <template>
   <div class="card" v-if="counterPatient < patients.length">
+    <div class="card-label"></div>
     <div class="card__img--wrapper">
       <img
         class="card__img"
@@ -43,14 +44,15 @@
 import { mapState, mapGetters } from 'vuex'
 export default {
   name: 'card',
-  props: {
-    patient: {
-      type: Object,
-      require: true,
-    },
-  },
+  emits: ['resetCardLable'],
+  props: ['cardLabel'],
   data() {
     return {}
+  },
+  methods: {
+    showLabelCard() {
+      this.$emit('resetCardLable')
+    },
   },
   computed: {
     ...mapState({
@@ -61,16 +63,32 @@ export default {
     }),
     ...mapGetters(['getFirstPatient']),
   },
+  mounted() {
+    this.showLabelCard()
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .card {
-  max-width: 540px;
+  width: 540px;
+  min-height: 420px;
   border-radius: 40px;
-  box-shadow: 0px 0px 40px rgba(127, 127, 127, 0.4);
+  box-shadow: 0 0 40px rgba(127, 127, 127, 0.4);
   overflow: hidden;
+  position: relative;
+  background: var(--maine-bg-color);
 }
+.card-label {
+  z-index: 10;
+  width: 350px;
+  height: 120px;
+  position: absolute;
+  bottom: 30%;
+  left: 20%;
+  transform: rotate(10deg);
+}
+
 .blank__card {
   width: 540px;
   height: 590px;

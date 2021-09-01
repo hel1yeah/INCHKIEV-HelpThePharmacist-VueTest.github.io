@@ -6,22 +6,6 @@ module.exports = {
   assetsDir: 'app',
   productionSourceMap: false,
   filenameHashing: true,
-  // firebase deploy --only hosting:inchkiev
-  // chainWebpack: config => {
-  //   const types = ["vue-modules", "vue", "normal-modules", "normal"];
-  //   types.forEach(type =>
-  //     addStyleResource(config.module.rule("scss").oneOf(type))
-  //   );
-  // }
+
 }
 
-// доступ из любого компонента к переменным scss
-// const path = require("path");
-// function addStyleResource(rule) {
-//   rule
-//     .use("style-resource")
-//     .loader("style-resources-loader")
-//     .options({
-//       patterns: [path.resolve(__dirname, "./src/assets/scss/_vars.scss")]
-//     });
-// }

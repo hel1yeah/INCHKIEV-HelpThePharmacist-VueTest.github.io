@@ -30,34 +30,6 @@
             Ваш результат: <br />
             <span>«Что я здесь делаю?»</span>
           </h1>
-          <ol class="done-description">
-            <li class="done-description__item">
-              С помощью Vuex (можно было и без его) создаём массив объектов
-              `patients` с пациентами, чтобы их было удобно отрисовать на
-              странице.
-            </li>
-            <li class="done-description__item">
-              При каждом выборе препарата добавляем в `counterPatient` + 1. При
-              выборе одного из препаратов добавляем значение `medicamentOne`
-              /`medicamentTwo`/ `medicamentThree` + 1. Отображаем эти значения
-              на странице.
-            </li>
-            <li class="done-description__item">
-              Каждый следующий пациент отображается с помощью `counterPatient`.
-              При смене значение отображается след элемент массива
-              `patients[counterPatient]`
-            </li>
-            <li class="done-description__item">
-              Кнопка обновления, скидывает все значения до первоначальных
-              (базовых).
-            </li>
-            <li class="done-description__item">Добавил небольшой адаптив.</li>
-            <li class="done-description__item">
-              Технологии и инструменты, что использовались — Vue 3, Vuex, Vue
-              Router, SCSS, Html5, Figma, VS Code.
-            </li>
-          </ol>
-          <hr />
           <p>
             Это тестовое задание, так что не будем углубляться в глубины проблем
             фармацевтов.
@@ -119,7 +91,7 @@ export default {
 }
 .final-ease {
   overflow: hidden;
-  position: relative;
+  // position: relative;
   width: 100%;
   color: var(--text-color-dark);
 }
