@@ -5,19 +5,20 @@
         <div class="main__menu--wrapper">
           <div class="main__menu">
             <div class="main__control-buttons">
-              <router-link :to="{ name: 'final-easy' }">
+              <router-link :to="{ name: 'start-page' }">
                 <button class="main__button">
                   <img
                     class="button-home__img"
-                    src="@/assets/images/home.svg"
+                    src="../assets/images/home.svg"
                     alt="Home"
-                  /></button
-              ></router-link>
+                  />
+                </button>
+              </router-link>
 
               <button class="main__button" @click="restartState">
                 <img
                   class="button-refresh__img"
-                  src="@/assets/images/refresh.svg"
+                  src="../assets/images/refresh.svg"
                   alt="Home"
                 />
               </button>
@@ -28,21 +29,21 @@
                 <div class="main__param--item">
                   <img
                     class="main__param--img"
-                    src="@/assets/images/not_happy_icon.svg"
+                    src="../assets/images/not_happy_icon.svg"
                     alt="happy_icon"
                   /><span>{{ medicamentOne || 0 }}</span>
                 </div>
                 <div class="main__param--item">
                   <img
                     class="main__param--img"
-                    src="@/assets/images/happy_icon.svg"
+                    src="../assets/images/happy_icon.svg"
                     alt="happy_icon"
                   /><span>{{ medicamentTwo || 0 }}</span>
                 </div>
                 <div class="main__param--item">
                   <img
                     class="main__param--img"
-                    src="@/assets/images/heart_icon.svg"
+                    src="../assets/images/heart_icon.svg"
                     alt="happy_icon"
                   /><span>{{ medicamentThree || 0 }}</span>
                 </div>
@@ -58,7 +59,7 @@
         </div>
 
         <div class="main__work-space">
-          <card :cardLabel="cardLabel" @resetCardlable='resetCardlable' ref='card'></card>
+          <card :cardLabel="cardLabel" @resetCardLable="resetCardLable"> </card>
 
           <div class="card__control-buttons">
             <button-card-control @action="nextPatient(1)" btnClass="purple"
@@ -79,8 +80,8 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import Card from '@/components/Card.vue'
-import ButtonCardControl from '@/components/ButtonCardControl.vue'
+import Card from '../components/Card.vue'
+import ButtonCardControl from '../components/ButtonCardControl.vue'
 
 export default {
   components: {
@@ -94,17 +95,21 @@ export default {
     }
   },
   methods: {
-    resetCardlable(){
-
+    resetCardLable() {
       this.cardLabel = null
     },
+
     nextPatient(medicamentNumber) {
       this.cardLabel = medicamentNumber
-
-
-      setTimeout(() => {
-        this.$store.dispatch('nextPatient', medicamentNumber)
-      }, 1000)
+      this.$store.dispatch('nextPatient', medicamentNumber)
+      if (this.counterPatient === this.patients.length) {
+        setTimeout(() => {
+          this.onFinalEasy()
+        }, 5000)
+      }
+    },
+    onFinalEasy() {
+      this.$router.push({ name: 'final-easy' })
     },
     restartState() {
       this.$store.dispatch('restartState')
@@ -129,6 +134,7 @@ export default {
 <style lang="scss" scoped>
 .main {
 }
+
 .main__inner {
   display: flex;
   flex-direction: row;
@@ -138,6 +144,7 @@ export default {
   align-items: stretch;
   height: 100vh;
 }
+
 .main__menu--wrapper {
   flex-shrink: 2;
   z-index: 0;
@@ -146,6 +153,7 @@ export default {
   flex-wrap: nowrap;
   flex-direction: column;
   justify-content: space-between;
+
   &::before {
     content: '';
     position: absolute;
@@ -158,6 +166,7 @@ export default {
     z-index: -1;
   }
 }
+
 .main__menu {
   padding: 70px 30px 30px;
   height: 100%;
@@ -165,6 +174,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
+
 .main__work-space {
   background-color: var(--maine-bg-color);
   flex-grow: 1;
@@ -175,12 +185,14 @@ export default {
   flex-direction: column;
   justify-content: space-around;
 }
+
 .main__control-buttons {
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-width: 180px;
 }
+
 .main__button {
   width: 70px;
   height: 70px;
@@ -193,6 +205,7 @@ export default {
   cursor: pointer;
   transition: 0.5s;
   outline: transparent;
+
   &:hover,
   &:active,
   &:focus,
@@ -201,6 +214,7 @@ export default {
     box-shadow: 0 0 40px rgba(127, 127, 127, 0.4);
   }
 }
+
 .button-home__img {
 }
 
@@ -209,12 +223,14 @@ export default {
 
 .main__param {
 }
+
 .main__param--text {
   font-size: 36px;
   line-height: 44px;
   font-weight: 800;
   letter-spacing: 2px;
 }
+
 .main__param--inner {
   display: flex;
   flex-wrap: wrap;
@@ -223,12 +239,13 @@ export default {
   align-items: center;
   max-width: 400px;
 }
+
 .main__param--item {
   margin: 35px 0 0;
   min-width: 190px;
   height: 80px;
   background-color: var(--maine-bg-color);
-  box-shadow: 0px 0px 50px rgba(131, 42, 64, 0.4);
+  box-shadow: 0 0 50px rgba(131, 42, 64, 0.4);
   border-radius: 40px;
   padding: 10px;
   color: var(--text-color-dark);
@@ -249,6 +266,7 @@ export default {
     font-weight: 800;
   }
 }
+
 .main__queue {
   font-size: 36px;
   line-height: 44px;
@@ -257,13 +275,16 @@ export default {
   padding: 30px 60px;
   background-color: rgba(255, 255, 255, 0.15);
 }
+
 .main__queue--descr {
 }
+
 .main__queue--num {
   & span {
     font-weight: bold;
   }
 }
+
 .card__control-buttons {
   display: flex;
   align-items: center;

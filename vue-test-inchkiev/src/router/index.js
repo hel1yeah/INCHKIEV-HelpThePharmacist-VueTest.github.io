@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import StartPage from '@/views/StartPage.vue'
-import Main from '@/views/Main.vue'
-import FinalEasy from '@/views/FinalEasy.vue'
+import StartPage from '../views/StartPage.vue'
+import Main from '../views/Main.vue'
+import FinalEasy from '../views/FinalEasy.vue'
 
 const routes = [
   {
