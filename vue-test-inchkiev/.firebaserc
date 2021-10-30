@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "inchkiev-test-vue3"
-  }
+    "default": "inchkiev-test-vue3",
+    "inchkiev": "vue-app-212e8"
+  },
+  "targets": {}
 }

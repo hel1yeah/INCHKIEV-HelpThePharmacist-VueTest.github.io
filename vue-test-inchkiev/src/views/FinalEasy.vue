@@ -2,13 +2,17 @@
   <section class="final-ease">
     <div class="final-ease__image-bg"></div>
     <div class="container">
-      <button class="btn-restart">
-        <img
-          class="button-home__img"
-          src="../assets/images/btn_restart.svg"
-          alt="btn_restart"
-        />
-      </button>
+      
+      <router-link :to="{name: 'start-page'}">
+        <button class="btn-restart">
+          <img
+            class="button-home__img"
+            src="../assets/images/btn_restart.svg"
+            alt="btn_restart"
+          />
+        </button>
+      </router-link>
+
       <div class="final-ease__inner">
         <div class="final-ease__interest">
           <div class="final-ease__interest--medicament">
